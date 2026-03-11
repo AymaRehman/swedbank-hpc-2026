@@ -19,7 +19,6 @@ lib64/
 parts/
 sdist/
 var/
-data/
 .DS_Store
 wheels/
 share/python-wheels/
