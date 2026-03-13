@@ -18,7 +18,7 @@ ML-powered SMS fraud detection system built with pandas, scikit-learn, fastAPI, 
 | uvicorn | Server for running FastAPI |
 | joblib | Model serialization and loading |
 
-## To setup on your end...
+## To set up on your end...
 
 ### 1. Clone the repository
 ```bash
@@ -26,7 +26,7 @@ git clone https://github.com/mgharris97/swedbank-hpc-2026.git
 cd swedbank-hpc-2026
 ```
 
-### 2. Create aand activate the virtual environment
+### 2. Create and activate the virtual environment
 ```bash
 python -m venv venv
 source venv/bin/activate
@@ -41,10 +41,11 @@ pip install -r requirements.txt
 ### 4. Download the dataset
 Download the SMS dataset from Kaggle and place it in the `data/` folder.
 
-https://www.kaggle.com/datasets/uciml/sms-spam-collection-dataset
+[SMS Spam Collection Dataset](https://www.kaggle.com/datasets/uciml/sms-spam-collection-dataset)
 
 ### Note:
-Keep in mind, everytime you come back to work on this project, you need to reactivate the venv first: ```source venv/bin/activate ```
+Keep in mind, every time you come back to work on this project, you need to reactivate the venv first: ```source venv/bin/activate ```
+
 
 
 
