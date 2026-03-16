@@ -41,7 +41,7 @@ pip install -r requirements.txt
 ```
 
 ### 4. Download the dataset
-Download the SMS dataset from Kaggle and place it in the `data/` folder.
+Download the SMS dataset from Kaggle and place it in the `data/` folder locally on your computer 
 
 [UC Irvine SMS Spam Collection Dataset from Kaggle](https://www.kaggle.com/datasets/uciml/sms-spam-collection-dataset)
 
