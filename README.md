@@ -52,6 +52,7 @@ Your directory structure should look like this :)
 
 ```
 ├── data
+│   └── (place dataset here)
 ├── hpc
 │   └── job.slurm
 ├── notebooks
