@@ -36,7 +36,7 @@ def train():
     # fit = vectorizer reads all messages, and builds a vocab. Every unique word gets assigned a num.
     # transform = converts messages into numbers using the vocabulary
     X_train_vec = vectorizer.fit_transform(X_train)
-    X_test_vec = vectorizer.transform(X_test)
+    X_test_vec = vectorizer.transform(X_test) #this will be used later
 
     model = LogisticRegression(max_iter=1000, class_weight="balanced")
     model.fit(X_train_vec, y_train)
