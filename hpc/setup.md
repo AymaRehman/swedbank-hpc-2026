@@ -8,7 +8,7 @@
 
 ### Option A: SSH (Recommended)
 
-Before connecting, ensure your SSH key is added via the HPC platform.
+Before connecting, ensure your SSH key is added via the HPC platform. [How to get an SSH key and where to place it](https://hpc-platforma.rtu.lv/hpc.html#ssh-access)
 
 ```bash
 ssh yourusername@ui-2.hpc.rtu.lv
