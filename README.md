@@ -52,29 +52,30 @@ Keep in mind, every time you come back to work on this project, you need to reac
 Your directory structure should look like this :)
 
 ```
+.
 ├── data
-│   └── (place dataset here)
+│   ├── processed
+│   └── spam.csv
 ├── hpc
-│   ├── grid_search.sh
-│   ├── grid_search.md
-|   └── setup.md
+│   ├── grid_search.md
+│   ├── grid_search.sh
+│   ├── results
+│   └── setup.md
+├── models
+│   ├── model.pkl
+│   └── vectorizer.pkl
 ├── notebooks
-│   └── eda.ipynb
+│   └── eda.ipynb
 ├── requirements.txt
 ├── src
-│   ├── api.py
-│   ├── model.py
-│   ├── evaluate.py
-│   ├── preprocess.py
-│   └── config.py
+│   ├── api.py
+│   ├── config.py
+│   ├── evaluate.py
+│   ├── grid_search.py
+│   ├── model.py
+│   └── preprocess.py
+├── venv
 ├── LICENSE
-├── README.md
-└── venv
+└── README.md
 ```
-
-
-
-
-
-
 
