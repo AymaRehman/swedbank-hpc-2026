@@ -15,29 +15,38 @@ from src.config import MODELS_DIR
 
 
 try:
-    model = joblib.load(MODELS_DIR / 'model.pkl')
-    vectorizer = joblib.load(MODELS_DIR / 'vectorizer.pkl')
+    model = joblib.load(MODELS_DIR / "model.pkl")
+    vectorizer = joblib.load(MODELS_DIR / "vectorizer.pkl")
 except FileNotFoundError as e:
-    raise RuntimeError("Model files not found. Run model.py or grid_search.py first to train and save the model.") from e
+    raise RuntimeError(
+        "Model files not found. Run model.py or grid_search.py first to train and save the model."
+    ) from e
 
-app = FastAPI(title='sms fraud detection api')
+app = FastAPI(title="sms fraud detection api")
 
-# request schema defines what incoming request body should look like. 
+
+# request schema defines what incoming request body should look like.
 class SMSRequest(BaseModel):
     message: str
 
+
 @app.get("/")
 def root():
-    return{"status": "The endpoint is running"}
-    
+    return {"status": "The endpoint is running"}
+
+
 @app.post("/classify")
-def classify_sms(request: SMSRequest):  # incoming data must match smsrequest schema define above
+def classify_sms(
+    request: SMSRequest,
+):  # incoming data must match smsrequest schema define above
     # takes the incoming message and converts it to the TF-IDF numbers using the saved vectorizer
     message_vec = vectorizer.transform([request.message])
 
     # take the vectorized message from above and run it through the model
     # returns either 0 (ham) or 1 (spam)
-    prediction = model.predict(message_vec)[0] # returns a list so [0] grabs the first result
+    prediction = model.predict(message_vec)[
+        0
+    ]  # returns a list so [0] grabs the first result
 
     # Return probability score for each class (ham, spam) that together add to 1.0
     probability = model.predict_proba(message_vec)[0]
@@ -46,6 +55,5 @@ def classify_sms(request: SMSRequest):  # incoming data must match smsrequest sc
     return {
         "message": request.message,
         "prediction": "spam" if prediction == 1 else "ham",
-        "confidence": round(float(max(probability)) * 100, 2)
+        "confidence": round(float(max(probability)) * 100, 2),
     }
-    
