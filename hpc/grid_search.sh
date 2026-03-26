@@ -1,7 +1,7 @@
 #!/bin/bash
 #PBS -N grid_search
 #PBS -l walltime=02:00:00
-#PBS -l select=1:ncpus=16:mem=16gb
+#PBS -l select=1:ncpus=16:mem=16gb:NodeType=cluster
 #PBS -j oe
 #PBS -o /mnt/home/hpc00523/swedbank-hpc-2026/hpc/results/grid_search_output.txt
 #PBS -A hpc_mt_00f65_hpcallocforgroup
@@ -15,6 +15,9 @@ echo "Job started: $(date)"
 echo "Running on: $(hostname)"
 echo "CPUs requested: 16"
 
+export OMP_NUM_THREADS=16
+export MKL_NUM_THREADS=16
+export NUMEXPR_NUM_THREADS=16
 python src/grid_search.py
 
 echo "Job finished: $(date)" 
