@@ -98,7 +98,7 @@ for r in results:
     print(f"  Best Params:   {r['best_params']}")
     print(f"  Time:          {r['time_seconds']}s")
 
-# Save the best model (the one wit hthe highest F1 score)
+# Save the best model (the one with the highest F1 score)
 best = max(results, key=lambda x: x['best_score'])
 print(f"\nBest overall model: {best['model']} with F1 of {best['best_score']}%")
 
