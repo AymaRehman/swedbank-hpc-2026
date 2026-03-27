@@ -38,7 +38,7 @@ def root():
 @app.post("/classify")
 def classify_sms(
     request: SMSRequest,
-):  # incoming data must match smsrequest schema define above
+):  # incoming data must match smsrequest schema defined above
     # takes the incoming message and converts it to the TF-IDF numbers using the saved vectorizer
     message_vec = vectorizer.transform([request.message])
 
