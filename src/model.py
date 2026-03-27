@@ -2,6 +2,7 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import classification_report
 import joblib
 from config import DATA_PROCESSED_PATH, MODELS_DIR
 
@@ -13,7 +14,7 @@ def train():
     # train_test_split: splits data into training and testing portions
     #   data is split into training and testing so the model does not train on 100% of data so it can
     #   classify a message it has not seen before
-    # TfdfVectorizer: converts texts messages into numbers
+    # TfidfVectorizer: converts text messages into numbers
     # joblib: saves the trained model to disk so it does not need to be retrained every time
 
     # load cleaned dataset
@@ -30,15 +31,15 @@ def train():
         X, y, test_size=0.2, random_state=42
     )
 
-    # TfidfVectorizer con`verts text messages into numbers the model can understand
+    # TfidfVectorizer converts text messages into numbers the model can understand
     vectorizer = TfidfVectorizer()
 
     # fit = vectorizer reads all messages, and builds a vocab. Every unique word gets assigned a num.
     # transform = converts messages into numbers using the vocabulary
     X_train_vec = vectorizer.fit_transform(X_train)
-    X_test_vec = vectorizer.transform(X_test) #this will be used later
+    X_test_vec = vectorizer.transform(X_test)
 
-    model = LogisticRegression(max_iter=1000, class_weight="balanced")
+    model = LogisticRegression(max_iter=1000, class_weight="balanced", random_state=42)
     model.fit(X_train_vec, y_train)
 
     joblib.dump(model, MODELS_DIR / "model.pkl")
@@ -47,6 +48,10 @@ def train():
     print("Model and vectorizer saved to models/")
     print(f"Training set size: {len(X_train)}")
     print(f"Test set size: {len(X_test)}")
+
+    y_pred = model.predict(X_test_vec)
+    print("\nTest Set Evaluation:")
+    print(classification_report(y_test, y_pred, target_names=["Ham", "Spam"]))
 
 
 if __name__ == "__main__":
