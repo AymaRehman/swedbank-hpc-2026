@@ -291,3 +291,73 @@ st.markdown("<div style='height:0.7rem'></div>", unsafe_allow_html=True)
 col1, col2, col3 = st.columns([1.2, 1, 1.2])
 with col2:
     classify = st.button("Analyse", use_container_width=True)
+
+# === result ===
+# this block only runs when the user clicks "Analyse"
+if classify:
+    if not message.strip():
+        st.markdown(
+            '<div class="err">Please enter a message before analysing.</div>',
+            unsafe_allow_html=True,
+        )
+    else:
+        try:
+            # send the message as JSON to the FastAPI /classify endpoint
+            # the API will run it through the TF-IDF vectorizer and the trained model
+            # and return a prediction of "spam" or "ham" along with a confidence score
+            response = requests.post(API_URL, json={"message": message}, timeout=5)
+            response.raise_for_status()  # raise an error if the response status is not 200 OK
+            data = response.json()
+
+            # extract the prediction and confidence from the API response
+            prediction = data["prediction"]
+            confidence = data["confidence"]
+            is_spam = prediction == "spam"
+
+            # based on whether it's spam or ham, set different text and styles for the result display
+            tag = "Spam" if is_spam else "Ham"
+            headline = "This looks like spam." if is_spam else "Looks legitimate."
+            body = (
+                "Our model flagged this message as likely fraudulent."
+                if is_spam
+                else "No significant fraud signals detected in this message."
+            )
+            tag_cls = "tag-spam" if is_spam else "tag-ham"
+            h_cls = "headline-spam" if is_spam else "headline-ham"
+            fill_cls = "confidence-fill-spam" if is_spam else "confidence-fill-ham"
+
+            st.markdown(
+                f"""
+                <div class="result-wrap">
+                    <div class="result-tag {tag_cls}">{tag}</div>
+                    <div class="result-headline {h_cls}">{headline}</div>
+                    <div class="result-body">{body}</div>
+                    <div class="confidence-row">
+                        <div class="confidence-track">
+                            <div class="{fill_cls}" style="width:{confidence}%"></div>
+                        </div>
+                        <div class="confidence-num">{confidence}% confidence</div>
+                    </div>
+                    <hr class="result-rule"/>
+                </div>
+            """,
+                unsafe_allow_html=True,
+            )
+
+        except requests.exceptions.ConnectionError:
+            # This error occurs when the frontend cannot connect to the API server, likely because it's not running.
+            st.markdown(
+                """
+                <div class="err">
+                    Cannot reach the API! Please make sure the server is running:<br/><br/>
+                    <code>uvicorn src.api:app --reload</code>
+                </div>
+            """,
+                unsafe_allow_html=True,
+            )
+        except Exception as e:
+            # Catch any other unexpected errors and display a generic error message.
+            st.markdown(
+                f'<div class="err">Unexpected error: {e}</div>',
+                unsafe_allow_html=True,
+            )
