@@ -55,6 +55,15 @@ python src/preprocess.py
 ```bash
 python src/model.py
 ```
+### 7. Run the api
+```bash
+uvicorn src.api:app --reload
+```
+### 8. Run the frontend
+```bash
+streamlit run src/frontend.py
+```
+
 
 ### Note:
 Keep in mind, every time you come back to work on this project, you need to reactivate the venv first: ```source venv/bin/activate ```
@@ -83,7 +92,8 @@ Your directory structure should look like this :)
 │   ├── evaluate.py
 │   ├── grid_search.py
 │   ├── model.py
-│   └── preprocess.py
+│   ├── preprocess.py
+│   └── frontend.py
 ├── venv
 ├── LICENSE
 └── README.md
