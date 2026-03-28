@@ -361,3 +361,46 @@ if classify:
                 f'<div class="err">Unexpected error: {e}</div>',
                 unsafe_allow_html=True,
             )
+
+# === about ===
+# This is the HTML that the CSS is applying to.
+# static info section at the bottom: four cards in a 2x2 grid
+st.markdown(
+    """
+    <div class="about">
+        <div class="about-eyebrow">About this project</div>
+        <div class="about-grid">
+            <div>
+                <div class="about-item-title">What it does</div>
+                <div class="about-item-body">
+                    Classifies SMS messages as <strong>spam</strong> or <strong>ham</strong> using a model
+                    trained on the UCI SMS Spam Collection (~5,500 messages).
+                </div>
+            </div>
+            <div>
+                <div class="about-item-title">How it works</div>
+                <div class="about-item-body">
+                    Messages are vectorised with <strong>TF-IDF</strong>, then classified by the best model
+                    found via grid search across Logistic Regression, Naive Bayes, SVM, and Random Forest.
+                </div>
+            </div>
+            <div>
+                <div class="about-item-title">The HPC angle</div>
+                <div class="about-item-body">
+                    Grid search runs <strong>1,000+ model trainings</strong> with 10-fold cross-validation
+                    on RTU's RUDENS cluster, compressing hours of compute into minutes.
+                </div>
+            </div>
+            <div>
+                <div class="about-item-title">Team</div>
+                <div class="about-item-body">
+                    <strong>Ayma Rehman · Matthew Harris</strong><br/>
+                    <strong>Evelīna Šadurska · Klints Legranžs</strong><br/>
+                    In collaboration with Ģirts Bērziņš, Swedbank.
+                </div>
+            </div>
+        </div>
+    </div>
+""",
+    unsafe_allow_html=True,
+)
