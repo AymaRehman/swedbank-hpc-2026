@@ -404,3 +404,15 @@ st.markdown(
 """,
     unsafe_allow_html=True,
 )
+
+# === footer ===
+st.markdown(
+    """
+    <div class="footer">
+        RTU HPC Challenge 2026 <br/>
+        Riga Technical University <br/>
+        In Collaboration with Swedbank
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
