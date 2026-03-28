@@ -300,13 +300,16 @@ if classify:
             '<div class="err">Please enter a message before analysing.</div>',
             unsafe_allow_html=True,
         )
+    elif len(message.strip()) < 10:
+        st.markdown(
+            '<div class="err">Message is too short for a reliable analysis.</div>',
+            unsafe_allow_html=True,
+        )
     else:
         try:
-            # send the message as JSON to the FastAPI /classify endpoint
-            # the API will run it through the TF-IDF vectorizer and the trained model
-            # and return a prediction of "spam" or "ham" along with a confidence score
-            response = requests.post(API_URL, json={"message": message}, timeout=10)
-            response.raise_for_status()  # raise an error if the response status is not 200 OK
+            with st.spinner("Analysing message patterns..."):
+                response = requests.post(API_URL, json={"message": message}, timeout=10)
+            response.raise_for_status()
             data = response.json()
 
             # extract the prediction and confidence from the API response
