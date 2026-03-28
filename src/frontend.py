@@ -305,7 +305,7 @@ if classify:
             # send the message as JSON to the FastAPI /classify endpoint
             # the API will run it through the TF-IDF vectorizer and the trained model
             # and return a prediction of "spam" or "ham" along with a confidence score
-            response = requests.post(API_URL, json={"message": message}, timeout=5)
+            response = requests.post(API_URL, json={"message": message}, timeout=10)
             response.raise_for_status()  # raise an error if the response status is not 200 OK
             data = response.json()
 
