@@ -1,6 +1,7 @@
 ## Production Readiness & Compliance with GDPR Regulations
-
+  
 This document covers the GDPR posture of the current system, ethical AI constraints, and the mandatory EU AI Act requirements for a real banking integration before deployment at scale.
+
 ---
 
 ### 1. Current System Architecture
