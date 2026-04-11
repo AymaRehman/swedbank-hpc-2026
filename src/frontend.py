@@ -349,19 +349,32 @@ if classify:
 
             if prediction == "spam":
                 st.error("⚠️ This message appears to be spam.")
-                st.markdown("**What to do:**")
                 st.markdown(
-                    "- **Do not click** any links in the message\n"
-                    "- **Do not call back** any numbers provided\n"
-                    "- **Do not share** personal details, passwords, or card numbers\n"
-                    "- Visit Swedbank via their official website: https://www.swedbank.lv/private\n"
-                    "- Report it to CERT.LV (Latvia's cybersecurity authority): [cert.lv](https://cert.lv)\n"
-                    "\n"
-                    "**Remember Swedbank will never ask for sensitive information via SMS.**\n"
+                    """
+                    <div style="font-family: 'DM Sans', sans-serif; font-size: 0.9rem; line-height: 1.8; color: var(--text-color, #1c1915);">
+                        <p style="margin: 0.8rem 0 0.5rem 0; font-weight: 600;">What to do:</p>
+                        <ul style="margin: 0; padding-left: 1.2rem;">
+                            <li><strong>Do not click</strong> any links in the message</li>
+                            <li><strong>Do not call back</strong> any numbers provided</li>
+                            <li><strong>Do not share</strong> personal details, passwords, or card numbers</li>
+                            <li>Visit Swedbank via their official website: <a href="https://www.swedbank.lv/private">swedbank.lv/private</a></li>
+                            <li>Report it to CERT.LV (Latvia's cybersecurity authority): <a href="https://cert.lv">cert.lv</a></li>
+                        </ul>
+                        <p style="margin: 0.8rem 0 0; font-weight: 600;">Remember Swedbank will never ask for sensitive information via SMS.</p>
+                    </div>
+                    """,
+                    unsafe_allow_html=True,
                 )
             else:
                 st.success(
                     "✅ This message appears legitimate. Nothing to worry about."
+                )
+                st.info(
+                    """
+                    **Safe to proceed:**
+                    This message does not match known phishing patterns. However, always remain 
+                    cautious if a message asks for immediate action or login credentials.
+                    """
                 )
 
         except requests.exceptions.ConnectionError:
