@@ -1,0 +1,21 @@
+services:
+
+  # The FastAPI Backend
+  - type: web
+    name: swedbank-fraud-detection-api
+    runtime: docker
+    plan: free
+    envVars:
+      - key: PORT
+        value: 8000
+
+  # The Streamlit Frontend
+  - type: web
+    name: swedbank-fraud-detection-frontend
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: streamlit run src/frontend.py --server.port $PORT --server.address 0.0.0.0
+    envVars:
+      - key: API_URL
+        value: https://swedbank-fraud-detection-api.onrender.com/classify
