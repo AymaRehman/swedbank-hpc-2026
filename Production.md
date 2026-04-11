@@ -41,6 +41,10 @@ In a production banking environment, the legal basis for processing this data wo
 
 * **Design**: The stateless API, API key authentication, and HTTPS transport are consistent with Art. 25's requirement for appropriate technical measures.
 
+#### Art. 26 — Joint controllers
+[gdpr-info.eu/art-26-gdpr](https://gdpr-info.eu/art-26-gdpr/)
+* **Controllership**: Per Art. 26, the collaboration between **RTU** and **Swedbank** requires a clear definition of who determines the purposes and means of processing during the training and deployment phases.
+
 #### Art. 35 — Data Protection Impact Assessment (DPIA)
 [gdpr-info.eu/art-35-gdpr](https://gdpr-info.eu/art-35-gdpr/)
 
@@ -66,6 +70,7 @@ Deployment at scale would trigger the requirement for a DPIA prior to processing
 | **Monitoring** | None | Real-time false positive/negative monitoring by segment |
 | **Incident Response** | None | Breach notification procedure per Art. 33 (72-hour window) |
 
+The Latvian supervisory authority for data protection is the **Datu valsts inspekcija (DVI)**: [dvi.gov.lv](https://www.dvi.gov.lv/en).
 
 ---
 
