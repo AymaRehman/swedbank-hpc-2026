@@ -30,7 +30,7 @@ ML-powered SMS fraud detection system built with pandas, scikit-learn, fastAPI, 
 | joblib | Model serialization and loading |
 | streamlit | Creating the frontend |
 | Docker | Containerization for consistent environments |
-| Render | Cloud hosting for API and UI services |
+| Render | Cloud hosting for containerized API and Streamlit frontend. Provides live public URLs without managing server infrastructure. |
 
 ### Deployment & Containerization
 This project is containerized using **Docker** and deployed via **Render Blueprints**.
@@ -59,6 +59,8 @@ pip install -r requirements.txt
 Download the SMS dataset from Kaggle and place it in the `data/` folder locally on your computer 
 
 [UC Irvine SMS Spam Collection Dataset from Kaggle](https://www.kaggle.com/datasets/uciml/sms-spam-collection-dataset)
+
+[Latvian SMS Synthetic Dataset](https://drive.google.com/file/d/1p9OcURV15c4lnN1N7C-AYVa_qAzhDKvw/view?usp=sharing)
 
 ### 5. Preprocess the data
 ```bash
