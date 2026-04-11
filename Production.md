@@ -29,6 +29,12 @@ In a production banking environment, the legal basis for processing this data wo
 * **Art. 6(1)(c)**: "Processing is necessary for compliance with a legal obligation to which the controller is subject" (e.g., Anti-Money Laundering and fraud prevention regulations).
 * **Art. 6(1)(f)**: "Processing is necessary for the purposes of the legitimate interests pursued by the controller" (Swedbank) to protect customer assets from fraud.
 
+#### Art. 15 — Right of access by the data subject
+[gdpr-info.eu/art-15-gdpr](https://gdpr-info.eu/art-15-gdpr/)
+Under Art. 15(1)(h), customers have the right to request "meaningful information about the logic involved" in any automated system. 
+The prototype makes use of **Logistic Regression** allowing for extraction of feature importance (TF-IDF weights), therefore making it possible to explicitly show which specific terms contributed to a "Spam" classification, satisfying the requirement for explainability.
+
+
 #### Art. 22 — Automated Individual Decision-Making, including profiling
 [gdpr-info.eu/art-22-gdpr](https://gdpr-info.eu/art-22-gdpr/)
 
@@ -44,6 +50,11 @@ In a production banking environment, the legal basis for processing this data wo
 #### Art. 26 — Joint controllers
 [gdpr-info.eu/art-26-gdpr](https://gdpr-info.eu/art-26-gdpr/)
 * **Controllership**: Per Art. 26, the collaboration between **RTU** and **Swedbank** requires a clear definition of who determines the purposes and means of processing during the training and deployment phases.
+
+#### Art. 33 — Notification of a personal data breach to the supervisory authority
+[gdpr-info.eu/art-33-gdpr](https://gdpr-info.eu/art-33-gdpr/)
+
+While the API is stateless, any interception of the data in transit (the request stream) would constitute a personal data breach. Production deployment requires a documented procedure to notify the **Datu valsts inspekcija (DVI)** within 72 hours of discovery.
 
 #### Art. 35 — Data Protection Impact Assessment (DPIA)
 [gdpr-info.eu/art-35-gdpr](https://gdpr-info.eu/art-35-gdpr/)
