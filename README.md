@@ -1,4 +1,4 @@
-## Swedbank HPC Fraud Detection Challenge
+<img width="402" height="277" alt="image" src="https://github.com/user-attachments/assets/3b53ded6-7a3d-4b56-9d37-f4cbd34c09f8" />## Swedbank HPC Fraud Detection Challenge
 ![Website Status](https://img.shields.io/website?url=https%3A%2F%2Fswedbank-fraud-detection-frontend.onrender.com&up_message=online&up_color=green&down_message=offline&down_color=red&label=Frontend%20Status)
 ![API Status](https://img.shields.io/website?url=https%3A%2F%2Fswedbank-fraud-detection-api.onrender.com%2Fdocs&up_message=online&up_color=blue&down_message=offline&down_color=red&label=API%20Status)
 
@@ -59,6 +59,7 @@ pip install -r requirements.txt
 Download the SMS dataset from Kaggle and place it in the `data/` folder locally on your computer 
 
 [UC Irvine SMS Spam Collection Dataset from Kaggle](https://www.kaggle.com/datasets/uciml/sms-spam-collection-dataset)
+[Latvian SMS Synthetic Dataset](https://drive.google.com/file/d/1p9OcURV15c4lnN1N7C-AYVa_qAzhDKvw/view?usp=sharing)
 
 ### 5. Preprocess the data
 ```bash
