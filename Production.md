@@ -47,3 +47,28 @@ In a production banking environment, the legal basis for processing this data wo
 Deployment at scale would trigger the requirement for a DPIA prior to processing, covering the nature of the data, necessity, risks to individuals, and technical mitigations.
 
 ---
+
+### 3. Ethical AI Constraints
+
+* **Human-in-the-loop**: The model must function as a decision-support tool. High-confidence spam flags should route to analyst queues, while borderline cases must involve manual review before action.
+* **Bias and Fairness**: The current training dataset is English-dominant. In production, performance must be monitored by language (e.g., Latvian vs. English) and demographic segments to ensure no disparate impact.
+* **Explainability**: Logistic Regression provides interpretable coefficients. Influential TF-IDF token weights can be surfaced to analysts to justify why a specific message was flagged.
+* **Right to Contestation**: Consistent with Art. 22(3), customers must have a clear route to contest a fraud flag with a human representative.
+
+---
+
+### 4. What Real Banking Integration Would Require
+
+| Requirement | Current State | Production Requirement |
+| :--- | :--- | :--- |
+| **Message Transport** | HTTPS (REST) | Internal VPC / private network, end-to-end encrypted |
+| **DPIA** | Not applicable (prototype) | Required before production under Art. 35 |
+| **Monitoring** | None | Real-time false positive/negative monitoring by segment |
+| **Incident Response** | None | Breach notification procedure per Art. 33 (72-hour window) |
+
+
+---
+
+### 5. Summary
+
+The current prototype is GDPR-compatible because it stores nothing and outputs only a signal for human review. Scaling to production introduces formal obligations, primarily Art. 6, 22, 33 and 35 that require architectural commitments to human oversight, a completed DPIA, and formal model governance. The stateless, human-in-the-loop design of the current system is the correct foundation to build on.
