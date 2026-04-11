@@ -215,5 +215,9 @@ venv/
 # data/ folder so that it stays empty on GitHub
 data/*
 models/*
+!models/model.pkl
+!models/vectorizer.pkl
+!models/.gitkeep
+
 hpc/results/*
 !hpc/results/.gitkeep
