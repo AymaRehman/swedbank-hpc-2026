@@ -32,7 +32,7 @@ In a production banking environment, the legal basis for processing this data wo
 * **Art. 6(1)(f)**: "Processing is necessary for the purposes of the legitimate interests pursued by the controller" (Swedbank) to protect customer assets from fraud.
 
 #### Art. 15 — Right of access by the data subject
-[gdpr-info.eu/art-15-gdpr](https://gdpr-info.eu/art-15-gdpr/)
+[gdpr-info.eu/art-15-gdpr](https://gdpr-info.eu/art-15-gdpr/)  
 Under Art. 15(1)(h), customers have the right to request "meaningful information about the logic involved" in any automated system. 
 The prototype makes use of **Logistic Regression** allowing for extraction of feature importance (TF-IDF weights), therefore making it possible to explicitly show which specific terms contributed to a "Spam" classification, satisfying the requirement for explainability.
 
@@ -90,7 +90,7 @@ The model must be tested against adversarial attacks.
 ### 4. Ethical AI Constraints
 
 * **Human-in-the-loop**: The model must function as a decision-support tool. High-confidence spam flags should route to analyst queues, while borderline cases must involve manual review before action.
-* **Bias and Fairness**: The current training dataset is English-dominant. In production, performance must be monitored by language (e.g., Latvian vs. English) and demographic segments to ensure no disparate impact.
+* **Bias and Fairness**: In production, performance must be monitored by language (e.g., Latvian vs. English) and demographic segments to ensure no disparate impact.
 * **Explainability**: Logistic Regression provides interpretable coefficients. Influential TF-IDF token weights can be surfaced to analysts to justify why a specific message was flagged.
 * **Right to Contestation**: Consistent with Art. 22(3), customers must have a clear route to contest a fraud flag with a human representative.
 
