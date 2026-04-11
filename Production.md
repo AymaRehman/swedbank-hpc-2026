@@ -1,7 +1,6 @@
 ## Production Readiness & Compliance with GDPR Regulations
 
-This document covers the GDPR posture of the current system, ethical AI constraints, and what a real banking integration would require before deployment at scale.
-
+This document covers the GDPR posture of the current system, ethical AI constraints, and the mandatory EU AI Act requirements for a real banking integration before deployment at scale.
 ---
 
 ### 1. Current System Architecture
@@ -14,6 +13,8 @@ The system currently processes personal data only transiently for the duration o
 ---
 
 ### 2. GDPR Posture
+
+As of 2026, the system must comply with [**General Data Protection Regulation**](https://gdpr-info.eu).
 
 #### Art. 5 — Principles Relating to Processing of Personal Data
 [gdpr-info.eu/art-5-gdpr](https://gdpr-info.eu/art-5-gdpr/)
@@ -63,7 +64,29 @@ Deployment at scale would trigger the requirement for a DPIA prior to processing
 
 ---
 
-### 3. Ethical AI Constraints
+### 3. EU AI Act Compliance
+
+As of 2026, the system must comply with [**Regulation (EU) 2024/1689 (The EU AI Act)**](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1689).
+
+#### High-Risk Classification
+Systems used in banking to evaluate behavior or prevent fraud are often treated as **High-Risk** if they impact a user's access to financial services.
+
+#### Fundamental Rights Impact Assessment (FRIA)
+Per **Art. 27** of the AI Act, as a financial institution, Swedbank must perform a **FRIA** before deploying this system. This assessment evaluates:
+* The potential for biased outcomes against specific demographic groups.
+* The impact on the "Right to Non-Discrimination" and "Consumer Protection."
+
+#### Technical Requirements
+* **Art. 13 (Transparency and provision of information to deployers)**   
+We must provide instructions for use to the bank's fraud analysts.
+* **Art. 14 (Human oversight)**   
+The interface must allow analysts to disregard or override the AI's output.
+* **Art. 15 (Accuracy, robustness and cybersecurity)**   
+The model must be tested against adversarial attacks.
+
+---
+
+### 4. Ethical AI Constraints
 
 * **Human-in-the-loop**: The model must function as a decision-support tool. High-confidence spam flags should route to analyst queues, while borderline cases must involve manual review before action.
 * **Bias and Fairness**: The current training dataset is English-dominant. In production, performance must be monitored by language (e.g., Latvian vs. English) and demographic segments to ensure no disparate impact.
@@ -72,19 +95,19 @@ Deployment at scale would trigger the requirement for a DPIA prior to processing
 
 ---
 
-### 4. What Real Banking Integration Would Require
+### 5. What Real Banking Integration Would Require
 
 | Requirement | Current State | Production Requirement |
 | :--- | :--- | :--- |
 | **Message Transport** | HTTPS (REST) | Internal VPC / private network, end-to-end encrypted |
-| **DPIA** | Not applicable (prototype) | Required before production under Art. 35 |
+| **DPIA & FRIA** | Not applicable (prototype) | Mandatory before production under GDPR Art. 35 & AI Act Art. 27 |
 | **Monitoring** | None | Real-time false positive/negative monitoring by segment |
 | **Incident Response** | None | Breach notification procedure per Art. 33 (72-hour window) |
 
-The Latvian supervisory authority for data protection is the **Datu valsts inspekcija (DVI)**: [dvi.gov.lv](https://www.dvi.gov.lv/en).
+The Latvian supervisory authority for both GDPR and AI Act oversight is the **Datu valsts inspekcija (DVI)**: [dvi.gov.lv](https://www.dvi.gov.lv/en).
 
 ---
 
-### 5. Summary
+### 6. Summary
 
-The current prototype is GDPR-compatible because it stores nothing and outputs only a signal for human review. Scaling to production introduces formal obligations, primarily Art. 6, 22, 33 and 35 that require architectural commitments to human oversight, a completed DPIA, and formal model governance. The stateless, human-in-the-loop design of the current system is the correct foundation to build on.
+The current prototype is GDPR compatible because it is stateless, stores nothing and supports human-in-the-loop decision-making. Scaling to production introduces formal obligations, primarily Art. 6, 22, and 35 of the GDPR and Art. 27 of the AI Act, that require architectural commitments to oversight, impact assessments, and formal model governance.
