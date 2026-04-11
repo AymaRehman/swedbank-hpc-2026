@@ -1,4 +1,6 @@
 ## Swedbank HPC Fraud Detection Challenge
+![Website Status](https://img.shields.io/website?url=https%3A%2F%2Fswedbank-fraud-detection-frontend.onrender.com&up_message=online&up_color=green&down_message=offline&down_color=red&label=Frontend%20Status)
+![API Status](https://img.shields.io/website?url=https%3A%2F%2Fswedbank-fraud-detection-api.onrender.com%2Fdocs&up_message=online&up_color=blue&down_message=offline&down_color=red&label=API%20Status)
 
 ML-powered SMS fraud detection system built with pandas, scikit-learn, fastAPI, and trained on RTU's HPC cluster. Developed in collaboration with Ģirts Bērziņš of Swedbank as part of RTU's HPC challenge 2026.
 
@@ -8,6 +10,12 @@ ML-powered SMS fraud detection system built with pandas, scikit-learn, fastAPI, 
     Ayma Rehman
     Klints Legranžs
     Evelīna Šadurska
+
+### Live Demo
+- [Frontend](https://swedbank-fraud-detection-frontend.onrender.com)
+- [API Backend](https://swedbank-fraud-detection-api.onrender.com/docs)
+
+
 ### Tech Stack
 
 | Library | Purpose |
@@ -21,7 +29,11 @@ ML-powered SMS fraud detection system built with pandas, scikit-learn, fastAPI, 
 | uvicorn | Server for running FastAPI |
 | joblib | Model serialization and loading |
 | streamlit | Creating the frontend |
+| Docker | Containerization for consistent environments |
+| Render | Cloud hosting for API and UI services |
 
+### Deployment & Containerization
+This project is containerized using **Docker** and deployed via **Render Blueprints**.
 
 ## To set up on your end...
 
@@ -87,7 +99,6 @@ Your directory structure should look like this :)
 │   └── vectorizer.pkl
 ├── notebooks
 │   └── eda.ipynb
-├── requirements.txt
 ├── src
 │   ├── api.py
 │   ├── config.py
@@ -96,7 +107,9 @@ Your directory structure should look like this :)
 │   ├── model.py
 │   ├── preprocess.py
 │   └── frontend.py
-├── venv
+├── Dockerfile
+├── render.yaml
+├── requirements.txt
 ├── LICENSE
 └── README.md
 ```
