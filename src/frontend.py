@@ -347,6 +347,23 @@ if classify:
                 unsafe_allow_html=True,
             )
 
+            if prediction == "spam":
+                st.error("⚠️ This message appears to be spam.")
+                st.markdown("**What to do:**")
+                st.markdown(
+                    "- **Do not click** any links in the message\n"
+                    "- **Do not call back** any numbers provided\n"
+                    "- **Do not share** personal details, passwords, or card numbers\n"
+                    "- Visit Swedbank via their official website: https://www.swedbank.lv/private\n"
+                    "- Report it to CERT.LV (Latvia's cybersecurity authority): [cert.lv](https://cert.lv)\n"
+                    "\n"
+                    "**Remember Swedbank will never ask for sensitive information via SMS.**\n"
+                )
+            else:
+                st.success(
+                    "✅ This message appears legitimate. Nothing to worry about."
+                )
+
         except requests.exceptions.ConnectionError:
             # This error occurs when the frontend cannot connect to the API server, likely because it's not running.
             st.markdown(
