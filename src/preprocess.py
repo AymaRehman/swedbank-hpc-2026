@@ -11,10 +11,19 @@ def load_data():
     return df
 
 
+def load_latvian_data():
+    latvian_path = DATA_RAW_PATH.parent / "latvian_sms_synthetic_v2.csv"
+    df = pd.read_csv(latvian_path, encoding="utf-8")
+    df = df[["label", "message"]]
+    df = df.dropna(subset=["message", "label"])
+    return df
+
+
 def clean_text(text):
     text = text.lower()
     text = text.replace("£", " gbp ").replace("$", " usd ").replace("€", " eur ")
-    text = re.sub(r"[^a-z0-9\s]", "", text)
+    # Preserve Latvian diacritics: ā č ē ģ ī ķ ļ ņ š ū ž
+    text = re.sub(r"[^a-z0-9\sāčēģīķļņšūž]", "", text)
     text = re.sub(r"\s+", " ", text).strip()
     return text
 
@@ -52,14 +61,24 @@ def save_processed(df):
 
 
 def preprocess():
-    # For debugging, display if preprocessing is running
     print("Starting preprocessing...")
-    df = load_data()
+
+    # Load English dataset
+    df_english = load_data()
+    print(f"English messages loaded: {len(df_english)}")
+
+    # Load synthetic Latvian dataset
+    df_latvian = load_latvian_data()
+    print(f"Latvian messages loaded: {len(df_latvian)}")
+
+    # Combine both datasets
+    df = pd.concat([df_english, df_latvian], ignore_index=True)
+    print(f"Combined total before cleaning: {len(df)}")
+
     df["message"] = df["message"].apply(clean_text)
     df = encode_labels(df)
     df = remove_duplicates(df)
     save_processed(df)
-    # For debugging, display if preprocessing is completed
     print("Preprocessing completed.")
 
 
