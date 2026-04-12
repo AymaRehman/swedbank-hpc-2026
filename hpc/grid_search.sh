@@ -13,7 +13,7 @@ source venv/bin/activate
 
 echo "Job started: $(date)"
 echo "Running on: $(hostname)"
-echo "CPUs requested: 32"
+echo "CPUs requested: 192"
 
 export OMP_NUM_THREADS=192
 export MKL_NUM_THREADS=192
